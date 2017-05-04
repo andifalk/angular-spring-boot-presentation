@@ -97,17 +97,8 @@
                     </section>
                     <section>
                         <h2>AngularJS = Angular 1</h2>
-                        <img src="images/angularjs_logo.png">
-                    </section>
-                    <section>
-                        <h2>Angular = Angular 2, Angular 4, ...</h2>
+                        <h2>Angular = Angular 2.x, 4.x, 5.x, ...</h2>
                         <img src="images/angular2-logo.png">
-                    </section>
-                    <section>
-                        <h2>Angular JS</h2>
-                        <img src="images/angular1_tweet.png" width="1000px" height="250px">
-                        <small><a href="https://angularjs.blogspot.de/2016/09/angular-16-expression-sandbox-removal.html">
-                            https://angularjs.blogspot.de/2016/09/angular-16-expression-sandbox-removal.html</a></small>
                     </section>
                     <section>
                         <div class='left' style='float:left;width:40%'>
@@ -117,6 +108,18 @@
                             <h2>OWASP Top 10 2017</h2>
                             <h3>A3: Cross-Site Scripting (XSS)</h3>
                         </div>
+                    </section>
+                    <section>
+                        <h2>Angular JS Security</h2>
+                        <img src="images/angular1_tweet.png" width="1000px" height="250px">
+                        <small><a href="https://angularjs.blogspot.de/2016/09/angular-16-expression-sandbox-removal.html">
+                            https://angularjs.blogspot.de/2016/09/angular-16-expression-sandbox-removal.html</a></small>
+                    </section>
+                    <section>
+                        <h2>Angular Security</h2>
+                        <img src="images/security_tracking_issue.png">
+                        <small><a href="https://github.com/angular/angular/issues/8511">
+                            https://github.com/angular/angular/issues/8511</a></small>
                     </section>
                     <section>
                         <h2>Angular Komponente</h2>
@@ -136,6 +139,19 @@
                         </code></pre>
                     </section>
                     <section>
+                        <h2>Angular Template</h2>
+                        <h4>HTML Bindings</h4>
+                        <pre><code class="html" data-trim contenteditable>
+                            <h2>Binding potentiell gefährlicher HTML-Snippets</h2>
+
+                            <h3>Encoden von HTML Snippet</h3>
+                            <h3 class="trusted">{{untrustedHtml}}</h3>
+
+                            <h3>Sanitizing von HTML Snippet (mit 'innerHtml')</h3>
+                            <h3 class="trusted" [innerHTML]="untrustedHtml"></h3>
+                        </code></pre>
+                    </section>
+                    <section>
                         <h2>Double Submit CSRF Token</h2>
                         <img src="images/csrf.jpg">
                     </section>
@@ -151,8 +167,6 @@
                     <section data-background="images/backend.png" data-background-size="80%">
                         <h1>Backend</h1>
                     </section>
-                    <section data-background="images/spring_stack.jpg" data-background-size="40%">
-                    </section>
                     <section>
                         <div class='left' style='float:left;width:40%'>
                             <img src="images/owasp_top_10_2017.png" class="plain" width="100%" height="100%">
@@ -160,8 +174,12 @@
                         <div class='right' style='float:right;width:60%'>
                             <h2>OWASP Top 10 2017</h2>
                             <h3>A1: Injection</h3>
+                            <h3>A2: Broken Authentication and Session Management</h3>
+                            <h3>A8: Cross-Site Request Forgery</h3>
                             <h3>A10: Underprotected APIs <span style="color: blue">(New)</span></h3>
                         </div>
+                    </section>
+                    <section data-background="images/spring_stack.jpg" data-background-size="40%">
                     </section>
                 </section>
                 <section>
@@ -208,6 +226,19 @@
                     <section>
                         <h2>OpenID Connect</h2>
                         <img src="images/identityserver.jpg">
+                    </section>
+                    <section>
+                        <h2>OAuth 2 Server als Tweet</h2>
+                        <img src="images/tweetable_oauth.png" width="90%" height="90%">
+                    </section>
+                    <section>
+                        <h1>Grant Typen</h1>
+                        <ul>
+                            <li>Authorization Code - Serverseitiges Frontend</li>
+                            <li>Implicit -> Angular Frontend</li>
+                            <li>Client Credentials - Backend-Backend Kommunikation</li>
+                            <li>Resource Owner - Meist eine schlechte Idee</li>
+                        </ul>
                     </section>
                 </section>
                 <section>
@@ -258,6 +289,34 @@
                 </section>
                 <section data-background="images/demo.jpg" data-background-size="100%">
                     <h1>Demo</h1>
+                </section>
+                <section>
+                    <section data-background="images/cloud.jpg" data-background-size="100%">
+                        <h1>Und in der Cloud?</h1>
+                    </section>
+                    <section>
+                        <img src="images/cloud-modelle.png">
+                    </section>
+                    <section tagcloud>
+                        <h3>Alte Bekannte auch in der Cloud</h3>
+                        CSRF
+                        XSS
+                        SQL Injection
+                        Session Fixation
+                        Denial of Service
+                        Verwundbare Bibliotheken
+                        Schwache Passworte
+                        Broken Authorization
+                        Sensitive Data Exposure
+                    </section>
+                    <section>
+                        <h2>Rotate, Repair, Repave</h2>
+                        <blockquote cite="https://thenewstack.io/cloud-foundrys-approach-security-rotate-repair-repave">
+                            &ldquo;What if every server inside my data center had a maximum lifetime of two hours?
+                            This approach would frustrate malware writers...&rdquo;
+                        </blockquote>
+                        Justin Smith, Pivotal
+                    </section>
                 </section>
                 <section>
                     <div class='left' style='float:left;width:40%'>
