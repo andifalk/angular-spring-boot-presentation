@@ -314,13 +314,36 @@
                         <img src="images/identityserver.jpg">
                     </section>
                     <section>
-                        <h2>Tweetable OAuth 2 Server</h2>
-                        <img src="images/tweetable_oauth.png" width="90%" height="90%">
+                        <h2>OAuth 2 / OpenId Connect Resource</h2>
+                        <pre><code class="java" data-trim >
+                            @EnableResourceServer
+                            @Configuration
+                            public class OAuth2Configuration {
+                                @Bean
+                                public JwtAccessTokenConverterConfigurer
+                                            jwtAccessTokenConverterConfigurer() {
+                                    return new MyJwtConfigurer(...);
+                                }
+                                static class MyJwtConfigurer
+                                        implements JwtAccessTokenConverterConfigurer {
+                                    @Override
+                                    public void configure(
+                                        JwtAccessTokenConverter converter) {...}
+                                }
+                            }
+                        </code></pre>
+                        <small>
+                            <a href="https://tools.ietf.org/html/rfc6819">OAuth 2.0 Threat Model and Security Considerations</a>
+                        </small>
                     </section>
                     <section>
                         <h1>Implicit Grant</h1>
                         <img src="images/angular2-logo.png" class="plain" width="20%">
-                        <img src="images/jquery.png" class="plain" width="20%">
+                        </p>
+                        <small>
+                            <a href="https://openid.net/specs/openid-connect-implicit-1_0.html">Implicit Client Implementer’s Guide</a><br>
+                            <a href="https://tools.ietf.org/html/rfc6819">OAuth 2.0 Threat Model and Security Considerations</a>
+                        </small>
                     </section>
                     <section>
                         <h1>Client Credentials Grant</h1>
