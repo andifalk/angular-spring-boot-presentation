@@ -10,7 +10,7 @@
         <meta name="author" content="Andreas Falk">
 
         <link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/beige.css">
+		<link rel="stylesheet" href="css/theme/white.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -39,9 +39,9 @@
                     <img src="images/karlsruher_entwicklertag.png" width="55%">
                     <h3>22. Mai 2017</h3>
                 </section>
-				<section data-background="images/novatec-back.png">
-                    <h3 style="color: white">Andreas Falk</h3>
-                    <p>http://www.novatec-gmbh.de</p>
+				<section>
+                    <h3>Andreas Falk</h3>
+                    <h4>NovaTec Consulting GmbH</h4>
                     <p>andreas.falk@novatec-gmbh.de</p>
                     <p>@NT_AQE, @andifalk</p>
                     <img class="plain" src="images/portfolio.png" width="55%">
@@ -50,7 +50,7 @@
                     <section>
                         <h1>Architecture / Threat Model</h1>
                     </section>
-                    <section data-background="images/threat_architecture.png" data-background-size="90%">
+                    <section data-background="images/threat_model.png" data-background-size="90%">
                         <aside class="notes">
                             This slide has fragments which are also stepped through in the notes window.
                         </aside>
@@ -85,13 +85,13 @@
                         SQLInjection
                         CSRF
                         XSS
-                        OWASP
                         OAuth2
                         OpenID-Connect
                         Authentication
                         Authorization
                         Secure Coding
                         Security-Testing
+                        Sensitive-Data
                     </section>
                     <section>
                         <img src="images/owasp_top_10_2017.png" class="plain" width="45%" height="45%">
@@ -121,7 +121,7 @@
                     </section>
                     <section>
                         <h2>AngularJS = Angular 1</h2>
-                        <h2>Angular = Angular 2.x, 4.x, 5.x, ...</h2>
+                        <h2>Angular = Angular 2.x, 4.x, ...</h2>
                         <img src="images/angular2-logo.png">
                     </section>
                     <section>
@@ -136,7 +136,7 @@
                     </section>
                     <section>
                         <h2>Angular Security</h2>
-                        <blockquote cite="https://thenewstack.io/cloud-foundrys-approach-security-rotate-repair-repave">
+                        <blockquote cite="https://github.com/angular/angular/issues/8511">
                             &ldquo;...The basic idea is to implement automatic, secure escaping for all values that can reach
                             the DOM...
                             By default, with no specific action for developers, Angular apps must be secure...&rdquo;
@@ -211,8 +211,8 @@
                         <img src="images/owasp_top_10_2017.png" class="plain" width="40%" height="40%">
                     </section>
                     <section>
-                        <h2>Spring MVC + Spring Data JPA</h2>
-                        <h4>Prevent Injections using Bean Validation</h4>
+                        <h2>Persistent XSS + Injections</h2>
+                        <h4>Strong Typing + Bean Validation</h4>
                         <pre><code class="java" data-trim contenteditable>
                             @Entity
                             public class Person extends AbstractPersistable&lt;Long&gt; {
@@ -229,8 +229,8 @@
                          </code></pre>
                     </section>
                     <section>
-                        <h2>Spring Data JPA</h2>
-                        <h4>Prevent SQL-Injection using Prepared Statements</h4>
+                        <h2>SQL Injections</h2>
+                        <h4>Spring Data JPA: Use Prepared Statements</h4>
                         <pre><code class="java" data-trim contenteditable>
                             @Query(
                             "select u from User u where u.username = "
@@ -241,7 +241,7 @@
                         </code></pre>
                     </section>
                     <section>
-                        <h3>A8: Cross-Site Request Forgery (CSRF)</h3>
+                        <h4>A8: Cross-Site Request Forgery (CSRF)</h4>
                         <img src="images/owasp_top_10_2017.png" class="plain" width="40%" height="40%">
                     </section>
                     <section>
@@ -251,17 +251,15 @@
                     <section>
                         <h1>Spring Security</h1>
                         <h2>Secure By Default</h2>
-                        <ul>
-                            <li class="fragment">Authentication required for all HTTP endpoints</li>
-                            <li class="fragment">Session Fixation Protection</li>
-                            <li class="fragment">Session Cookie (HttpOnly, Secure)</li>
-                            <li class="fragment">CSRF Protection</li>
-                            <li class="fragment">Security Response Header</li>
-                        </ul>
+                        <p class="fragment">Authentication required for all HTTP endpoints</p>
+                        <p class="fragment">Session Fixation Protection</p>
+                        <p class="fragment">Session Cookie (HttpOnly, Secure)</p>
+                        <p class="fragment">CSRF Protection</p>
+                        <p class="fragment">Security Response Header</p>
                     </section>
                     <section>
-                        <h2>Spring Security CSRF Configuration</h2>
-                        <h3>Angular Support</h3>
+                        <h3>Spring Security CSRF Configuration</h3>
+                        <h4>Angular Support</h4>
                         <pre><code class="java" data-trim contenteditable>
                             @Configuration
                             public class WebSecurityConfiguration
@@ -285,7 +283,8 @@
                         <img src="images/owasp_top_10_2017.png" width="20%" height="20%">
                     </section>
                     <section>
-                        <h3>Authentication (Stateful or Stateless?)</h3>
+                        <h2>Authentication</h2>
+                        <h4>Stateful or Stateless?</h4>
                         <table>
                             <thead>
                             <tr>
@@ -295,7 +294,7 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td>With each Request</td>
+                                <td>With each Request <br>(on same domain)</td>
                                 <td>Manually as Header</td>
                             </tr>
                             <tr>
@@ -303,31 +302,27 @@
                                 <td>No CSRF possible</td>
                             </tr>
                             <tr>
-                                <td>Persisted when unloading DOM</td>
-                                <td>No automatic persistence</td>
-                            </tr>
-                            <tr>
                                 <td>One domain</td>
                                 <td>Cross domain (CORS)</td>
                             </tr>
                             <tr>
-                                <td>Sensitive Information (HTTPS)</td>
-                                <td>Sensitive Information (HTTPS)</td>
+                                <td>Sensitive Info (HTTPS)</td>
+                                <td>Sensitive Info (HTTPS)</td>
                             </tr>
                             </tbody>
                         </table>
                     </section>
                     <section>
-                        <h2>OAuth 2</h2>
+                        <h3>OAuth 2 = Authorization</h3>
                         <img src="images/authserver.jpg">
                     </section>
                     <section>
-                        <h2>OpenID Connect</h2>
+                        <h3>OpenID Connect = Authenticaton</h3>
                         <img src="images/identityserver.jpg">
                     </section>
                     <section>
-                        <h2>OAuth 2 / OpenId Connect Resource</h2>
-                        <pre><code class="java" data-trim >
+                        <h3>OAuth 2 / OpenId Connect Resource</h3>
+                        <pre><code class="java" data-trim>
                             @EnableResourceServer
                             @Configuration
                             public class OAuth2Configuration {
@@ -349,20 +344,32 @@
                         </small>
                     </section>
                     <section>
-                        <h1>Implicit Grant</h1>
-                        <img src="images/angular2-logo.png" class="plain" width="20%">
-                        </p>
+                        <h2>Implicit Grant</h2>
+                        <img src="images/angular2-logo.png" class="plain" width="15%">
+                        <span class="fragment">Validate...</span>
+                        <p class="fragment">...issuer identifier</p>
+                        <p class="fragment">...audiance (client id)</p>
+                        <p class="fragment">...signature (public key)</p>
+                        <p class="fragment">...expiration time</p>
                         <small>
                             <a href="https://openid.net/specs/openid-connect-implicit-1_0.html">Implicit Client Implementer’s Guide</a><br>
                             <a href="https://tools.ietf.org/html/rfc6819">OAuth 2.0 Threat Model and Security Considerations</a>
                         </small>
                     </section>
                     <section>
-                        <h1>Client Credentials Grant</h1>
+                        <h2>Client Credentials Grant</h2>
                         <img src="images/backend_communication.png">
                     </section>
                     <section>
-                        <h1>Resource Owner Grant</h1>
+                        <h2>Resource Owner Grant</h2>
+                        <pre><code class="http" data-trim>
+                            POST /token
+                            Host: localhost:9090
+                            Accept: application/json
+                            Content-type: application/x-www-form-encoded
+                            Authorization: Basic b2F1dGgtY2xpZW50LTE6b2F1dGgt...
+                            grant_type=password&scope=openid&username=adm&password=secret
+                        </code></pre>
                         <h2 style="color: red" class="fragment fade-up">Do NOT use!</h2>
                     </section>
                     <section>
@@ -397,7 +404,7 @@
                     </section>
                     <section>
                         <h2>Authorization of REST API</h2>
-                        <h3>Integrationtest</h3>
+                        <h3>Integration Test</h3>
                         <pre><code class="java" data-trim contenteditable>
                             public class AuthorizationIntegrationTest {
 
@@ -422,14 +429,7 @@
                     </section>
                     <section>
                         <h2>Good old friends ...und more...</h2>
-                        <span class="fragment highlight-current-red">CSRF</span>
-                        <span class="fragment highlight-current-red">XSS</span>
-                        <span class="fragment highlight-current-red">SQL Injection</span>
-                        <span class="fragment highlight-current-red">Session Fixation</span></br>
-                        <span class="fragment highlight-current-red">Vulnerable Dependencies</span>
-                        <span class="fragment highlight-current-red">Weak Passwords</span></br>
-                        <span class="fragment highlight-current-red">Broken Authorization</span>
-                        <span class="fragment highlight-current-red">Sensitive Data Exposure</span>
+                        <span">CSRF XSS SQL Injection Session Fixation Vulnerable Dependencies Weak Passwords Broken Authorization Sensitive Data Exposure</span>
                         <p class="fragment highlight-current-red grow">Distributed DoS</p>
                         <p class="fragment highlight-current-red grow">Economic DoS</p>
                     </section>
@@ -437,7 +437,39 @@
                         <h1 style="color: #6a1520">Weak Passwords</h1>
                     </section>
                     <section>
-                        <h2>So what has been changed</h2>
+                        <h3>A6: Sensitive Data Exposure</h3>
+                        <img src="images/owasp_top_10_2017.png" class="plain" width="35%" height="35%">
+                        <p><small><a href="https://github.com/OWASP/Top10">https://github.com/OWASP/Top10</a></small></p>
+                    </section>
+                    <section>
+                        <h2>Spring Cloud Config</h2>
+                        <small><a href="https://cloud.spring.io/spring-cloud-config">
+                            https://cloud.spring.io/spring-cloud-config</a></small>
+                        <p class="fragment">Externalized configuration in a distributed system</p>
+                        <p class="fragment">HTTP, resource-based API</p>
+                        <p class="fragment">Supports property file and YAML formats</p>
+                        <p class="fragment">Encrypt and decrypt property values</p>
+                        <aside class="notes">
+                            Spring Cloud Config
+                        </aside>
+                    </section>
+                    <section data-background="images/spring_cloud_config_vault.png" data-background-size="80%">
+                    </section>
+                    <section>
+                        <img src="images/hashicorp_vault.png" class="plain">
+                        <p><small><a style="color: black" href="https://www.vaultproject.io/">
+                            https://www.vaultproject.io/</a></small></p>
+                        <h3 class="fragment">Secret Storage</h3>
+                        <h3 class="fragment">Key Revocation</h3>
+                        <h3 class="fragment">Key Rolling</h3>
+                        <h3 class="fragment">Audit Logs</h3>
+                    </section>
+                    <section>
+                        <h2>Spring Cloud Services Security</h2>
+                        <img src="images/spring_cloud_services.png" class="plain">
+                    </section>
+                    <section data-background="images/cloud.jpg">
+                        <h2>So What Is Different</h2>
                         <h1>in the Cloud?</h1>
                     </section>
                     <section data-background="images/cloud-modelle.png" data-background-size="80%">
@@ -463,12 +495,42 @@
                     </section>
                     <section data-background="images/attacks.png" data-background-size="100%">
                     </section>
+                    <section>
+                        <h2>Test Your Application</h2>
+                        <h3 style="color: red">Before The Attacker Does</h3>
+                        <ul>
+                            <li>OWASP ZAP (https://github.com/zaproxy/zaproxy)</li>
+                            <li>Burp Suite Free Ed. (https://portswigger.net/burp)</li>
+                            <li>NMap (https://nmap.org)</li>
+                            <li>SQLMap (http://sqlmap.org)</li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <h1>References</h1>
+                    <small>
+                        <ul>
+                            <li><a href="https://github.com/OWASP/Top10">OWASP Top 10 2017 (https://github.com/OWASP/Top10)</a></li>
+                            <li><a href="https://github.com/OWASP/ASVS">Application Security Verification Standard (https://github.com/OWASP/ASVS)</a></li>
+                            <li><a href="https://www.owasp.org/index.php/OWASP_Proactive_Controls">Pro Active Controls (https://www.owasp.org/index.php/OWASP_Proactive_Controls)</a></li>
+                            <li><a href="https://angularjs.blogspot.de/2016/09/angular-16-expression-sandbox-removal.html">Angular Sandbox Removal (https://angularjs.blogspot.de/2016/09/angular-16-expression-sandbox-removal.html)</a></li>
+                            <li><a href="https://github.com/angular/angular/issues/8511">Angular Security Tracking Issue (https://github.com/angular/angular/issues/8511)</a></li>
+                            <li><a href="https://tools.ietf.org/html/rfc6819">OAuth 2.0 Threat Model and Security Considerations (https://tools.ietf.org/html/rfc6819)</a></li>
+                            <li><a href="https://openid.net/specs/openid-connect-implicit-1_0.html">Implicit Client Implementer’s Guide (https://openid.net/specs/openid-connect-implicit-1_0.html)</a></li>
+                            <li><a href="https://thenewstack.io/cloud-foundrys-approach-security-rotate-repair-repave">Rotate, Repair, Repave (https://thenewstack.io/cloud-foundrys-approach-security-rotate-repair-repave)</a></li>
+                            <li><a href="https://cloud.spring.io/spring-cloud-config/">Spring Cloud Config (https://cloud.spring.io/spring-cloud-config/)</a></li>
+                            <li><a href="https://cloud.spring.io/spring-cloud-vault">Spring Cloud Vault (https://cloud.spring.io/spring-cloud-vault)</a></li>
+                            <li><a href="https://www.vaultproject.io">Vault (https://www.vaultproject.io)</a></li>
+                        </ul>
+                        <p>All images used are from <a href="https://pixabay.com/">Pixabay</a> and are published under <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en">Creative Commons CC0 license.</a></p>
+                        All used logos are trademarks of respective companies
+                    </small>
                 </section>
                 <section data-background="images/key.jpg">
+                    <h1>Q&A</h1>
                     <p>http://www.novatec-gmbh.de</br>
                     http://blog.novatec-gmbh.de</p>
                     <p>andreas.falk@novatec-gmbh.de</p>
-                    <img src="images/twitter.png" width="50px" class="plain">
                     <p>@NT_AQE, @andifalk</p>
 
                 </section>
@@ -485,9 +547,10 @@
                 progress: true,
                 history: true,
                 center: true,
-                slideNumber: 'c',
+                slideNumber: 'c/t',
+                previewLinks: true,
 
-                allottedTime: 45 * 60 * 1000, // 45 minutes
+                allottedTime: 40 * 60 * 1000, // 45 minutes
 
                 transition: 'slide', // none/fade/slide/convex/concave/zoom
 				dependencies: [
